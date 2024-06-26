@@ -7,15 +7,20 @@ import com.bookmyshow.api.repositories.ShowSeatRepository;
 import com.bookmyshow.api.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 @Service
 public class BookingService {
-    private ShowSeatRepository showSeatRepository;
-    private UserRepository userRepository;
-    private ShowRepository showRepository;
+    private final ShowSeatRepository showSeatRepository;
+    private final UserRepository userRepository;
+    private final ShowRepository showRepository;
+
+    ConcurrentHashMap<Long,Integer> isShowSeatLocked = new ConcurrentHashMap<>();
+    ConcurrentHashMap<Long,String> showSeatLockOwner = new ConcurrentHashMap<>();
 
     @Autowired
     public BookingService(
@@ -28,36 +33,33 @@ public class BookingService {
         this.showRepository = showRepository;
     }
 
-    ConcurrentHashMap<Long,Integer> isShowSeatLocked = new ConcurrentHashMap<>();
-    ConcurrentHashMap<Long,String> showSeatLockOwner = new ConcurrentHashMap<>();
-
     //implementation using pessimistic lock by spring
-//    @Transactional(isolation = Isolation.SERIALIZABLE)
-//    public Booking bookTicket(
-//            Long showId,
-//            List<Long> showSeatIds,
-//            Long userId
-//    ) throws ShowSeatNotAvailableException {
-//        // Fetch given ShowSeats
-//        List<ShowSeat> showSeats = showSeatRepository.findByIdIn(showSeatIds);
-//
-//        // Check if each of them are available
-//        for (ShowSeat showSeat: showSeats) {
-//            if (showSeat.getState() != ShowSeatState.AVAILABLE) {
-//                throw new ShowSeatNotAvailableException("ShowSeat ID: " +
-//                        showSeat.getId() + " not available.");
-//            }
-//        }
-//
-//        // Update status to locked
-//        for (ShowSeat showSeat: showSeats) {
-//            showSeat.setState(ShowSeatState.LOCKED);
-//            showSeatRepository.save(showSeat);
-//        }
-//        Show show = showRepository.findById(showId).get();
-//        // Return the booking object
-//        return getBooking(userId, showSeats, show);
-//    }
+    @Transactional(isolation = Isolation.SERIALIZABLE)
+    public Booking bookTickets(
+            Long showId,
+            List<Long> showSeatIds,
+            Long userId
+    ) throws ShowSeatNotAvailableException {
+        // Fetch given ShowSeats
+        List<ShowSeat> showSeats = showSeatRepository.findByIdIn(showSeatIds);
+
+        // Check if each of them are available
+        for (ShowSeat showSeat: showSeats) {
+            if (showSeat.getState() != ShowSeatState.AVAILABLE) {
+                throw new ShowSeatNotAvailableException("ShowSeat ID: " +
+                        showSeat.getId() + " not available.");
+            }
+        }
+
+        // Update status to locked
+        for (ShowSeat showSeat: showSeats) {
+            showSeat.setState(ShowSeatState.LOCKED);
+            showSeatRepository.save(showSeat);
+        }
+        Show show = showRepository.findById(showId).get();
+        // Return the booking object
+        return getBooking(userId, showSeats, show);
+    }
 
 // implementation using custom lock
     public Booking bookTicket(

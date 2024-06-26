@@ -17,7 +17,7 @@ public class BookingController {
     }
 
     public Booking bookTicket(CreateBookingRequestDTO request) throws ShowSeatNotAvailableException {
-        return bookingService.bookTicket(
+        return bookingService.bookTickets(
                 request.getShowId() ,request.getShowSeatIds(), request.getUserId()
         );
     }

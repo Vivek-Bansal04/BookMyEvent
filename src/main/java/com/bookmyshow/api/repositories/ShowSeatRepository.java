@@ -13,16 +13,17 @@ import java.util.List;
 @Repository
 public interface ShowSeatRepository extends JpaRepository<ShowSeat, Long> {
 
-//    @Lock(LockModeType.PESSIMISTIC_WRITE)
-//    @QueryHints({
-//            @QueryHint(name = "javax.persistence.lock.timeout", value = "30000")
-//    })
-//    List<ShowSeat> findByIdIn(List<Long> showSeatIds);
-
+    @Lock(LockModeType.PESSIMISTIC_WRITE)
+    @QueryHints({
+            @QueryHint(name = "javax.persistence.lock.timeout", value = "30000")
+    })
     List<ShowSeat> findByIdIn(List<Long> showSeatIds);
+
+//    List<ShowSeat> findByyIdIn(List<Long> showSeatIds);
+
     ShowSeat save(ShowSeat showSeat);
 
-    boolean getLockOverShowSeat(List<Integer> showSeatIds);
-
-    boolean unlockShowSeat(List<Integer> showSeatIds);
+//    boolean getLockOverShowSeat(List<Integer> showSeatIds);
+//
+//    boolean unlockShowSeat(List<Integer> showSeatIds);
 }
