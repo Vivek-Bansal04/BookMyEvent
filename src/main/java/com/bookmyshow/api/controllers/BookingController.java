@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(path = "/tickets")
+@RequestMapping()
 public class BookingController {
     private BookingService bookingService;
 
@@ -19,7 +19,7 @@ public class BookingController {
         this.bookingService = bookingService;
     }
 
-    @PostMapping(path = "/book")
+    @PostMapping(path = "/book/tickets")
     public Booking bookTicket(CreateBookingRequestDTO request) throws ShowSeatNotAvailableException {
         return bookingService.bookTickets(
                 request.getShowId() ,request.getShowSeatIds(), request.getUserId()
