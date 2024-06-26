@@ -5,9 +5,12 @@ import com.bookmyshow.api.exceptions.ShowSeatNotAvailableException;
 import com.bookmyshow.api.models.Booking;
 import com.bookmyshow.api.services.BookingService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+@RestController
+@RequestMapping(path = "/tickets")
 public class BookingController {
     private BookingService bookingService;
 
@@ -16,6 +19,7 @@ public class BookingController {
         this.bookingService = bookingService;
     }
 
+    @PostMapping(path = "/book")
     public Booking bookTicket(CreateBookingRequestDTO request) throws ShowSeatNotAvailableException {
         return bookingService.bookTickets(
                 request.getShowId() ,request.getShowSeatIds(), request.getUserId()
