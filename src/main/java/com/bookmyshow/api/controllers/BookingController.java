@@ -5,6 +5,8 @@ import com.bookmyshow.api.exceptions.ShowSeatNotAvailableException;
 import com.bookmyshow.api.models.Booking;
 import com.bookmyshow.api.services.BookingService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,5 +24,10 @@ public class BookingController {
         return bookingService.bookTickets(
                 request.getShowId() ,request.getShowSeatIds(), request.getUserId()
         );
+    }
+
+    @GetMapping(path = "/check/health")
+    public ResponseEntity<Void> health() {
+        return ResponseEntity.ok().build();
     }
 }
