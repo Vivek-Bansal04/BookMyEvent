@@ -1,7 +1,7 @@
 package com.bookmyshow.api;
 
 import com.bookmyshow.api.controllers.BookingController;
-import com.bookmyshow.api.dtos.CreateBookingRequestDTO;
+import com.bookmyshow.api.dtos.BookingRequestDTO;
 
 import java.util.List;
 
@@ -25,7 +25,7 @@ public class BookingRunner implements Runnable {
     @Override
     public void run() {
         try {
-            CreateBookingRequestDTO requestDTO = new CreateBookingRequestDTO();
+            BookingRequestDTO requestDTO = new BookingRequestDTO();
             requestDTO.setShowId(showId);
             requestDTO.setShowSeatIds(showSeatId);
             requestDTO.setUserId(userId);

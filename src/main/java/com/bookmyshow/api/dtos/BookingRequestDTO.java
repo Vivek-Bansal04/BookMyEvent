@@ -10,7 +10,7 @@ import java.util.List;
 @Getter
 @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class CreateBookingRequestDTO {
+public class BookingRequestDTO {
     Long showId;
     List<Long> showSeatIds;
     Long userId;
