@@ -19,11 +19,6 @@ public interface ShowSeatRepository extends JpaRepository<ShowSeat, Long> {
     })
     List<ShowSeat> findByIdIn(List<Long> showSeatIds);
 
-//    List<ShowSeat> findByyIdIn(List<Long> showSeatIds);
-
     ShowSeat save(ShowSeat showSeat);
 
-//    boolean getLockOverShowSeat(List<Integer> showSeatIds);
-//
-//    boolean unlockShowSeat(List<Integer> showSeatIds);
 }

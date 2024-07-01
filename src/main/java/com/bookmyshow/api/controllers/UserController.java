@@ -5,27 +5,27 @@ import com.bookmyshow.api.dtos.CreateUserResponseDto;
 import com.bookmyshow.api.models.User;
 import com.bookmyshow.api.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+@RestController
+@RequestMapping(path = "/users")
 public class UserController {
-//    @Qualifier("mango")
     private UserService userService;
 
     @Autowired
     public UserController(UserService userService) {
-        System.out.printf("USER SERVICE IS BEING CALLED");
         this.userService = userService;
     }
 
-    public CreateUserResponseDto createUser(CreateUserRequestDto request) {
-        User savedUser = userService.createUser(
-                request.getEmail()
+    @PostMapping(produces = "application/json")
+    public ResponseEntity<User> createUser(@RequestBody CreateUserRequestDto request) {
+        return ResponseEntity.ok(
+                userService.createUser(request.getEmail())
         );
-
-        CreateUserResponseDto response = new CreateUserResponseDto();
-        response.setUser(savedUser);
-
-        return response;
     }
 }

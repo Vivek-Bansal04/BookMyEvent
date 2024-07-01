@@ -1,15 +1,24 @@
 package com.bookmyshow.api.controllers;
 
+import com.bookmyshow.api.dtos.AuditoriumDTO;
+import com.bookmyshow.api.dtos.AuditoriumSeatDTO;
+import com.bookmyshow.api.dtos.TheatreDTO;
 import com.bookmyshow.api.exceptions.CityNotFoundException;
 import com.bookmyshow.api.models.SeatType;
 import com.bookmyshow.api.models.Theatre;
 import com.bookmyshow.api.services.TheatreService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
-@Controller
+@RestController
+@RequestMapping(path = "/theatres")
+@Slf4j
 public class TheatreController {
     private TheatreService theatreService;
 
@@ -18,37 +27,47 @@ public class TheatreController {
         this.theatreService = theatreService;
     }
 
-    public Theatre createTheatre(
-            String name,
-            String address,
-            Long cityId
-    ) {
-        Theatre theatre = null;
+    @PostMapping(produces = "application/json", consumes = "application/json")
+    public ResponseEntity<Theatre> createTheatre(@RequestBody TheatreDTO request) {
         try {
-            theatre = this.theatreService.createTheatre(name, address, cityId);
+            return ResponseEntity.ok(
+                    theatreService.createTheatre(
+                            request.getName(), request.getAddress(), request.getCityId()
+                    )
+            );
         } catch (CityNotFoundException e) {
-            System.out.println("Something wrong happened");
+            log.error("City not found with id{}",request.getCityId());
+        }catch (Exception e){
+            log.error("Error in creating theatre",e);
         }
-
-        return theatre;
+        return null;
     }
 
-    public Theatre addAuditorium(Long theatreId, String name,
-                                 int capacity) {
-        return theatreService.addAuditorium(theatreId, name, capacity);
+    @GetMapping(produces = "application/json")
+    public ResponseEntity<List<Theatre>> getTheatres() {
+        return ResponseEntity.ok(theatreService.getTheatres());
+    }
+
+    @PostMapping(path = "/auditorium/{theatreId}", produces = "application/json")
+    public ResponseEntity<Theatre> addAuditorium(
+            @PathVariable(value = "theatreId") Long theatreId,
+            @RequestBody AuditoriumDTO request
+    ) {
+        return ResponseEntity.ok(
+                theatreService.addAuditorium(theatreId, request.getName(), request.getCapacity())
+        );
     }
 
     /**
      * In which auditorium
      * you want to add how many seats
      * of what type
-     * @param auditoriumId
-     * @param seatCount
      */
+    @PostMapping(path = "/auditorium/{auditoriumId}/seats", produces = "application/json")
     public void addSeats(
-            Long auditoriumId,
-            Map<SeatType, Integer> seatCount
+            @PathVariable(value = "auditoriumId") Long auditoriumId,
+            @RequestBody AuditoriumSeatDTO request
     ) {
-        theatreService.addSeats(auditoriumId, seatCount);
+        theatreService.addSeats(auditoriumId, request.getSeatCount());
     }
 }

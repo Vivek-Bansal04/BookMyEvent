@@ -1,16 +1,17 @@
 package com.bookmyshow.api.controllers;
 
-import com.bookmyshow.api.models.Language;
-import com.bookmyshow.api.models.SeatType;
+import com.bookmyshow.api.dtos.ShowDTO;
 import com.bookmyshow.api.models.Show;
 import com.bookmyshow.api.services.ShowService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Date;
-import java.util.Map;
-
-@Controller
+@RestController
+@RequestMapping(path = "/shows")
 public class ShowController {
 
     private ShowService showService;
@@ -20,16 +21,11 @@ public class ShowController {
         this.showService = showService;
     }
 
-    public Show createShow(
-            Long movieId,
-            Date startTime,
-            Date endTime,
-            Long auditoriumId,
-            Map<SeatType, Integer> seatPricing,
-            Language language
+    @PostMapping(produces = "application/json", consumes = "application/json")
+    public ResponseEntity<Show> createShow(
+            @RequestBody ShowDTO showDTO
     ) {
-        return showService.createShow(
-                movieId, startTime, endTime, auditoriumId, seatPricing, language);
+        return ResponseEntity.ok(showService.createShow(showDTO));
     }
 
 }

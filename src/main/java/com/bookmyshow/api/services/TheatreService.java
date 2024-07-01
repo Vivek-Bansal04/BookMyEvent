@@ -58,6 +58,10 @@ public class TheatreService {
         return savedTheatre;
     }
 
+    public List<Theatre> getTheatres(){
+        return theatreRepository.findAll();
+    }
+
     public Theatre addAuditorium(Long theatreId, String name, int capacity) {
 
         Theatre theatre = theatreRepository.findById(theatreId).get();

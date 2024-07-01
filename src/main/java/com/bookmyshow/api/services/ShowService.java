@@ -1,5 +1,6 @@
 package com.bookmyshow.api.services;
 
+import com.bookmyshow.api.dtos.ShowDTO;
 import com.bookmyshow.api.models.*;
 import com.bookmyshow.api.repositories.AuditoriumRepository;
 import com.bookmyshow.api.repositories.ShowRepository;
@@ -27,20 +28,13 @@ public class ShowService {
         this.showSeatRepository = showSeatRepository;
     }
 
-    public Show createShow(
-            Long movieId,
-            Date startTime,
-            Date endTime,
-            Long auditoriumId,
-            Map<SeatType, Integer> seatPricing,
-            Language language
-    ) {
+    public Show createShow(ShowDTO request) {
         Show show = new Show();
-        show.setStartTime(startTime);
-        show.setEndTime(endTime);
-        show.setLanguage(language);
+        show.setStartTime(request.getStartTime());
+        show.setEndTime(request.getEndTime());
+        show.setLanguage(request.getLanguage());
 
-        Auditorium auditorium = auditoriumRepository.findById(auditoriumId).get();
+        Auditorium auditorium = auditoriumRepository.findById(request.getAuditoriumId()).get();
         show.setAuditorium(auditorium);
         Show savedShow = showRepository.save(show);
         List<ShowSeat> savedShowSeats = new ArrayList<>();

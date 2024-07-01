@@ -11,7 +11,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.*;
+import java.time.LocalDate;
+import java.util.Collections;
+import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
 @Service
@@ -113,7 +115,7 @@ public class BookingServiceImpl implements BookingService{
         booking.setBookedBy(userRepository.findById(userId).get());
         booking.setShow(show);
         booking.setShowSeats(showSeats);
-        booking.setTimeOfBooking(new Date());
+        booking.setTimeOfBooking(LocalDate.now());
         int totalAmount = 0;
         for(ShowSeat showSeat : showSeats){
             for(ShowSeatType showSeatType: show.getShowSeatTypes()){

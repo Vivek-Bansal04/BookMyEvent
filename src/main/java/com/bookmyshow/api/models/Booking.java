@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -25,5 +26,5 @@ public class Booking extends BaseModel {
     private double totalAmount;
     @Enumerated(EnumType.STRING)
     private BookingStatus bookingStatus;
-    private Date timeOfBooking;
+    private LocalDate timeOfBooking;
 }

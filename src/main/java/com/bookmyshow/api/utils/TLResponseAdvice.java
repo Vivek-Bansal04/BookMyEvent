@@ -28,10 +28,7 @@ public class TLResponseAdvice implements ResponseBodyAdvice<Object> {
             ServerHttpRequest request,
             ServerHttpResponse response
     ) {
-        if (body instanceof ResponseBuilder) {
-            return body;
-        }
-        if (body instanceof Resource) {
+        if (body instanceof ResponseBuilder || body instanceof Resource) {
             return body;
         }
 

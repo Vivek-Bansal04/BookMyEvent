@@ -4,7 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
@@ -13,8 +13,8 @@ import java.util.List;
 public class Show extends BaseModel {
     @ManyToOne
     private Movie movie;
-    private Date startTime;
-    private Date endTime;
+    private LocalDate startTime;
+    private LocalDate endTime;
 
     @ManyToOne
     private Auditorium auditorium;
