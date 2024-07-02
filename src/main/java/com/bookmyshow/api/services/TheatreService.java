@@ -46,16 +46,16 @@ public class TheatreService {
         theatre.setName(name);
         theatre.setAddress(address);
 
-        Theatre savedTheatre = theatreRepository.save(theatre);
+//        Theatre savedTheatre = theatreRepository.save(theatre);
         City dbCity = cityOptional.get();
 
         if (dbCity.getTheatres() == null) {
             dbCity.setTheatres(new ArrayList<>());
         }
-        dbCity.getTheatres().add(savedTheatre);
+        dbCity.getTheatres().add(theatre);
         this.cityRepository.save(dbCity);
 
-        return savedTheatre;
+        return theatre;
     }
 
     public List<Theatre> getTheatres(){

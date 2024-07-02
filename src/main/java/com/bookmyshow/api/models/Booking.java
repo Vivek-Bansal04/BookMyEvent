@@ -5,13 +5,11 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 @Entity
 @Getter
 @Setter
-//Booking
 public class Booking extends BaseModel {
     @ManyToOne
     private User bookedBy;
@@ -20,7 +18,8 @@ public class Booking extends BaseModel {
     private Show show;
 
     // 1 : M
-    // 1  : 1  // if no cancellation -> @OneToMany
+    // 1  : 1  // if no cancellation -> @OneToMany,
+    // currently many to many as we will give support for cancellation of booking
     @ManyToMany
     private List<ShowSeat> showSeats;
     private double totalAmount;
