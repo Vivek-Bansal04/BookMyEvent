@@ -25,6 +25,7 @@ dependencies {
 //	implementation 'org.springframework.boot:spring-boot-starter-security'
 	//Spring Web
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'com.vladmihalcea:hibernate-types-52:2.9.13'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.security:spring-security-test'
 	//Spring dev tools
