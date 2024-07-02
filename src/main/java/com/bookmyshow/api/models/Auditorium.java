@@ -35,5 +35,6 @@ public class Auditorium extends BaseModel {
     private List<AuditoriumFeature> auditoriumFeatures;
 
     @ManyToOne
+    @JoinColumn(name = "fk_theatre_id")
     private Theatre theatre;
 }

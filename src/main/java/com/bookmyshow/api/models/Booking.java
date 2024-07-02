@@ -12,9 +12,11 @@ import java.util.List;
 @Setter
 public class Booking extends BaseModel {
     @ManyToOne
+    @JoinColumn(name = "fk_user")
     private User bookedBy;
 
     @ManyToOne
+    @JoinColumn(name = "fk_show_id")
     private Show show;
 
     // 1 : M

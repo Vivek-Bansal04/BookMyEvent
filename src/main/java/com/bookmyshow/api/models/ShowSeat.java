@@ -13,9 +13,11 @@ import javax.persistence.*;
 // created a separate class ShowSeatType for pricing of seat
 public class ShowSeat extends BaseModel {
     @ManyToOne
+    @JoinColumn(name = "fk_show_id")
     private Show show;
 
     @ManyToOne
+    @JoinColumn(name = "fk_seat_id")
     private Seat seat;
 
     @Enumerated(EnumType.STRING)

@@ -12,6 +12,7 @@ import javax.persistence.*;
 //used for getting price of a particular seatType for a particular show
 public class ShowSeatType extends BaseModel {
     @ManyToOne
+    @JoinColumn(name = "fk_show_id", referencedColumnName = "id",nullable = false)
     private Show show;
 
     @Enumerated(EnumType.STRING)

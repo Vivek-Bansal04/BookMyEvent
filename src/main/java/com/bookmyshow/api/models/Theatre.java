@@ -1,11 +1,14 @@
 package com.bookmyshow.api.models;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
+import lombok.Getter;
+import lombok.Setter;
+
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@Getter
+@Setter
 public class Theatre extends BaseModel {
     private String name;
     private String address;
@@ -13,38 +16,7 @@ public class Theatre extends BaseModel {
     @OneToMany(mappedBy = "theatre", fetch = FetchType.EAGER)
     private List<Auditorium> auditoriums;
 
-    @OneToMany
+    @OneToMany(targetEntity = Show.class, cascade = CascadeType.ALL,fetch = FetchType.LAZY,orphanRemoval = true)
+    @JoinColumn(name = "fk_theatre_id",referencedColumnName = "id")
     private List<Show> upcomingShows;
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public List<Auditorium> getAuditoriums() {
-        return auditoriums;
-    }
-
-    public void setAuditoriums(List<Auditorium> auditoriums) {
-        this.auditoriums = auditoriums;
-    }
-
-    public List<Show> getUpcomingShows() {
-        return upcomingShows;
-    }
-
-    public void setUpcomingShows(List<Show> upcomingShows) {
-        this.upcomingShows = upcomingShows;
-    }
 }
