@@ -12,8 +12,6 @@ import java.util.List;
 public class City extends BaseModel {
     private String name;
 
-    //TODO MAKE LAZY AND USE fetch JOIN
-    @OneToMany(targetEntity = Theatre.class, cascade = CascadeType.ALL,fetch = FetchType.EAGER,orphanRemoval = true)
-    @JoinColumn(name = "fk_city_id",referencedColumnName = "id")
+    @OneToMany(targetEntity = Theatre.class, cascade = CascadeType.ALL,orphanRemoval = true)
     private List<Theatre> theatres;
 }

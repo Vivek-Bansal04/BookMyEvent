@@ -13,10 +13,15 @@ public class Theatre extends BaseModel {
     private String name;
     private String address;
 
-    @OneToMany(mappedBy = "theatre", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "theatre",cascade = CascadeType.ALL,orphanRemoval = true)
     private List<Auditorium> auditoriums;
 
     @OneToMany(targetEntity = Show.class, cascade = CascadeType.ALL,fetch = FetchType.LAZY,orphanRemoval = true)
     @JoinColumn(name = "fk_theatre_id",referencedColumnName = "id")
     private List<Show> upcomingShows;
+
+    @ManyToOne
+    @JoinColumn(name = "fk_city_id")
+    private City city;
+
 }

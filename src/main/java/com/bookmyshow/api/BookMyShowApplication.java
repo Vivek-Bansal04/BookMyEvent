@@ -1,18 +1,10 @@
 package com.bookmyshow.api;
 
 import com.bookmyshow.api.controllers.*;
-import com.bookmyshow.api.dtos.CreateUserRequestDto;
-import com.bookmyshow.api.models.Language;
-import com.bookmyshow.api.models.SeatType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 @SpringBootApplication
 public class BookMyShowApplication implements CommandLineRunner {

@@ -4,7 +4,7 @@ import com.bookmyshow.api.dtos.AuditoriumDTO;
 import com.bookmyshow.api.dtos.AuditoriumSeatDTO;
 import com.bookmyshow.api.dtos.TheatreDTO;
 import com.bookmyshow.api.exceptions.CityNotFoundException;
-import com.bookmyshow.api.models.SeatType;
+import com.bookmyshow.api.models.Auditorium;
 import com.bookmyshow.api.models.Theatre;
 import com.bookmyshow.api.services.TheatreService;
 import lombok.extern.slf4j.Slf4j;
@@ -13,8 +13,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
-import java.util.UUID;
 
 @RestController
 @RequestMapping(path = "/theatres")
@@ -48,14 +46,19 @@ public class TheatreController {
         return ResponseEntity.ok(theatreService.getTheatres());
     }
 
-    @PostMapping(path = "/auditorium/{theatreId}", produces = "application/json")
-    public ResponseEntity<Theatre> addAuditorium(
+    @PostMapping(path = "/{theatreId}/auditoriums", produces = "application/json")
+    public ResponseEntity<Auditorium> addAuditorium(
             @PathVariable(value = "theatreId") Long theatreId,
             @RequestBody AuditoriumDTO request
     ) {
-        return ResponseEntity.ok(
-                theatreService.addAuditorium(theatreId, request.getName(), request.getCapacity())
-        );
+        //TODO ADD AUDI FEATURES
+        Auditorium auditorium = null;
+        try{
+            auditorium = theatreService.addAuditorium(theatreId, request);
+        }catch (Exception e){
+            log.error("Error while creating audi with theatreId{}",theatreId);
+        }
+        return ResponseEntity.ok(auditorium);
     }
 
     /**
@@ -63,7 +66,7 @@ public class TheatreController {
      * you want to add how many seats
      * of what type
      */
-    @PostMapping(path = "/auditorium/{auditoriumId}/seats", produces = "application/json")
+    @PostMapping(path = "/auditoriums/{auditoriumId}/seats", produces = "application/json")
     public void addSeats(
             @PathVariable(value = "auditoriumId") Long auditoriumId,
             @RequestBody AuditoriumSeatDTO request

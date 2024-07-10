@@ -1,12 +1,10 @@
 package com.bookmyshow.api.controllers;
 
-import com.bookmyshow.api.dtos.CreateUserRequestDto;
-import com.bookmyshow.api.dtos.CreateUserResponseDto;
+import com.bookmyshow.api.dtos.UserRequestDTO;
 import com.bookmyshow.api.models.User;
 import com.bookmyshow.api.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,7 +21,7 @@ public class UserController {
     }
 
     @PostMapping(produces = "application/json")
-    public ResponseEntity<User> createUser(@RequestBody CreateUserRequestDto request) {
+    public ResponseEntity<User> createUser(@RequestBody UserRequestDTO request) {
         return ResponseEntity.ok(
                 userService.createUser(request.getEmail())
         );

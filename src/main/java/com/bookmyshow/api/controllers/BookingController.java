@@ -34,16 +34,4 @@ public class BookingController {
     public ResponseEntity<Void> health() {
         return ResponseEntity.ok().build();
     }
-
-    @GetMapping(path = "/laksh",produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Object> laksh() {
-        TLResponse response = new TLResponse("I Love u lakshu");
-        return ResponseEntity.ok(response);
-    }
-
-    @GetMapping(path = "/harshita",produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Object> harshi() {
-        TLResponse response = new TLResponse("kaam krle padhle");
-        return ResponseEntity.ok(response);
-    }
 }
