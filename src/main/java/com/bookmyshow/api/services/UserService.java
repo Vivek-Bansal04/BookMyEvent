@@ -1,5 +1,6 @@
 package com.bookmyshow.api.services;
 
+import com.bookmyshow.api.dtos.UserRequestDTO;
 import com.bookmyshow.api.models.User;
 import com.bookmyshow.api.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,12 +15,11 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public User createUser(String email) {
+    public User createUser(UserRequestDTO request) {
         User user = new User();
-        user.setEmail(email);
+        user.setEmail(request.getEmail());
+        user.setName(request.getName());
 
-        User savedUser = userRepository.save(user);
-
-        return savedUser;
+        return userRepository.save(user);
     }
 }

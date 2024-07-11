@@ -29,11 +29,9 @@ public class ActorService {
     }
 
     public Actor findActorById(Long id){
-        Optional<Actor> actor = actorRepository.findById(id);
-        if(actor.isEmpty()){
+        return actorRepository.findById(id).orElseThrow(() -> {
             log.error("Actor not found with id {}",id);
             throw new ResourceNotFoundException("actor","id",id);
-        }
-        return actor.get();
+        });
     }
 }

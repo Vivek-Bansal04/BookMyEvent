@@ -23,7 +23,7 @@ public class UserController {
     @PostMapping(produces = "application/json")
     public ResponseEntity<User> createUser(@RequestBody UserRequestDTO request) {
         return ResponseEntity.ok(
-                userService.createUser(request.getEmail())
+                userService.createUser(request)
         );
     }
 }

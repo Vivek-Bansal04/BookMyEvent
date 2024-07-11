@@ -1,5 +1,6 @@
 package com.bookmyshow.api.models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.vladmihalcea.hibernate.type.array.ListArrayType;
 import lombok.Getter;
 import lombok.Setter;
@@ -8,6 +9,8 @@ import org.hibernate.annotations.TypeDef;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 
 import static com.vladmihalcea.hibernate.type.array.internal.AbstractArrayType.SQL_ARRAY_TYPE;
@@ -20,8 +23,11 @@ public class Show extends BaseModel {
     @ManyToOne
     @JoinColumn(name = "fk_movie_id")
     private Movie movie;
-    private LocalDate startTime;
-    private LocalDate endTime;
+
+    private LocalTime startTime;
+    private LocalTime endTime;
+    private LocalDate startDate;
+    private LocalDate endDate;
 
     @ManyToOne
     @JoinColumn(name = "fk_auditorium_id")

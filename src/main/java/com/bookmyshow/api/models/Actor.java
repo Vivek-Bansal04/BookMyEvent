@@ -13,6 +13,8 @@ import java.util.List;
 public class Actor extends BaseModel {
     private String name;
 
+    //TODO Gender
+
     @ManyToMany(mappedBy = "actors")
     private List<Movie> movies;
 }
