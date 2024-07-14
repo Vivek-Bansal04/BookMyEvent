@@ -1,5 +1,6 @@
 package com.bookmyshow.api.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,6 +14,7 @@ public class Theatre extends BaseModel {
     private String name;
     private String address;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "theatre",cascade = CascadeType.ALL,orphanRemoval = true)
     private List<Auditorium> auditoriums;
 

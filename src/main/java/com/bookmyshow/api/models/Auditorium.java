@@ -1,5 +1,6 @@
 package com.bookmyshow.api.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.vladmihalcea.hibernate.type.array.ListArrayType;
 import lombok.Getter;
 import lombok.Setter;
@@ -21,6 +22,7 @@ import static com.vladmihalcea.hibernate.type.array.internal.AbstractArrayType.S
 public class Auditorium extends BaseModel {
     private String name;
 
+    @JsonIgnore
     @OneToMany(targetEntity = Seat.class, cascade = CascadeType.ALL,fetch = FetchType.EAGER,orphanRemoval = true)
     @JoinColumn(name = "fk_auditorium_id",referencedColumnName = "id")
     private List<Seat> seats;
@@ -34,6 +36,7 @@ public class Auditorium extends BaseModel {
     @Enumerated(EnumType.STRING)
     private List<AuditoriumFeature> auditoriumFeatures;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "fk_theatre_id")
     private Theatre theatre;

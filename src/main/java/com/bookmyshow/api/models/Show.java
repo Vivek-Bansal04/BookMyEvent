@@ -1,6 +1,7 @@
 package com.bookmyshow.api.models;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.vladmihalcea.hibernate.type.array.ListArrayType;
 import lombok.Getter;
 import lombok.Setter;
@@ -20,6 +21,7 @@ import static com.vladmihalcea.hibernate.type.array.internal.AbstractArrayType.S
 @Setter
 @TypeDef(name = "list-array", typeClass = ListArrayType.class)
 public class Show extends BaseModel {
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "fk_movie_id")
     private Movie movie;
@@ -29,13 +31,17 @@ public class Show extends BaseModel {
     private LocalDate startDate;
     private LocalDate endDate;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "fk_auditorium_id")
     private Auditorium auditorium;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "show",cascade = CascadeType.ALL)
     private List<ShowSeat> showSeats;
 
+
+    @JsonIgnore
     @OneToMany(mappedBy = "show", cascade = CascadeType.ALL,orphanRemoval = true)
     private List<ShowSeatType> showSeatTypes;
 
