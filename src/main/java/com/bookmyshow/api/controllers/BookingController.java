@@ -4,7 +4,6 @@ import com.bookmyshow.api.dtos.BookingRequestDTO;
 import com.bookmyshow.api.exceptions.ShowSeatNotAvailableException;
 import com.bookmyshow.api.models.Booking;
 import com.bookmyshow.api.services.BookingService;
-import com.bookmyshow.api.utils.TLResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;

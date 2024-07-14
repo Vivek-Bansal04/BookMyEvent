@@ -33,7 +33,7 @@ public class Show extends BaseModel {
     @JoinColumn(name = "fk_auditorium_id")
     private Auditorium auditorium;
 
-    @OneToMany(mappedBy = "show")
+    @OneToMany(mappedBy = "show",cascade = CascadeType.ALL)
     private List<ShowSeat> showSeats;
 
     @OneToMany(mappedBy = "show", cascade = CascadeType.ALL,orphanRemoval = true)

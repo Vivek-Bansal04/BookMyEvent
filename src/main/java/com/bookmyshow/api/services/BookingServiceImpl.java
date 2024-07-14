@@ -62,6 +62,7 @@ public class BookingServiceImpl implements BookingService{
         }
         Show show = showRepository.findById(showId).get();
         // Return the booking object
+        //TODO lock show seats in redis for 10 mins
         return getBooking(userId, showSeats, show);
     }
 

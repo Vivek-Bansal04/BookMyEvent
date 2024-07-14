@@ -1,70 +1,83 @@
 package com.bookmyshow.demo;
 
-import com.bookmyshow.api.models.ShowSeat;
+import com.bookmyshow.api.BookMyShowApplication;
+import com.bookmyshow.api.exceptions.ShowSeatNotAvailableException;
+import com.bookmyshow.api.models.Booking;
 import com.bookmyshow.api.services.BookingService;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import javax.persistence.EntityManager;
-import javax.persistence.LockModeType;
-import javax.persistence.PersistenceContext;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 @ExtendWith(SpringExtension.class)
-@SpringBootTest
+@SpringBootTest(classes = BookMyShowApplication.class)
 public class BookingServiceTest {
 
     @Autowired
     private BookingService bookingService;
 
-    @PersistenceContext
-    private EntityManager entityManager;
+    private List<Long> showSeatIds1;
+    private List<Long> showSeatIds2;
+    private Long showId;
+    private Long userId1;
+    private Long userId2;
+
+    @BeforeEach
+    public void setUp() {
+        showSeatIds1 = Arrays.asList(4L, 5L, 6L);
+        showSeatIds2 = Arrays.asList(6L, 7L);
+        showId = 6L;
+        userId1 = 1L;
+        userId2 = 3L;
+    }
 
     @Test
-    public void testPessimisticLockingFailureException() throws Exception {
-        // Assume we have a show with ID 1 and seats with IDs 1, 2, 3
-        Long showId = 1L;
-        List<Long> showSeatIds = Arrays.asList(1L, 2L, 3L);
-        Long userId = 1L;
+    public void testConcurrentBooking() throws Exception {
+        ExecutorService executor = Executors.newFixedThreadPool(2);
 
-        // Lock a seat manually to simulate a conflict
-        entityManager.getTransaction().begin();
-        ShowSeat seatToLock = entityManager.find(ShowSeat.class, 1L, LockModeType.PESSIMISTIC_WRITE);
-
-        ExecutorService executorService = Executors.newFixedThreadPool(2);
-
-        // Thread 1: Simulate booking in a separate thread
-        Future<?> future1 = executorService.submit(() -> {
+        Future<Booking> future1 = executor.submit(() -> {
             try {
-                bookingService.bookTickets(showId, showSeatIds, userId);
-            } catch (Exception e) {
-                // Handle exception (expected due to locking conflict)
+                return bookingService.bookTickets(showId, showSeatIds1, userId1);
+            } catch (ShowSeatNotAvailableException e) {
+                throw new RuntimeException(e);
             }
         });
 
-        // Thread 2: Simulate booking in another separate thread
-        Future<?> future2 = executorService.submit(() -> {
+        Future<Booking> future2 = executor.submit(() -> {
             try {
-                bookingService.bookTickets(showId, showSeatIds, userId);
-            } catch (Exception e) {
-                // Handle exception (expected due to locking conflict)
+                return bookingService.bookTickets(showId, showSeatIds2, userId2);
+            } catch (ShowSeatNotAvailableException e) {
+                throw new RuntimeException(e);
             }
         });
 
-        future1.get();
-        future2.get();
+        boolean oneFailed = false;
+        try {
+            future1.get();
+        } catch (Exception e) {
+            oneFailed = true;
+            System.out.println("failedd future 1");
+        }
 
-        // Clean up
-        entityManager.getTransaction().commit();
-        entityManager.clear();
+        try {
+            future2.get();
+        } catch (Exception e) {
+            oneFailed = true;
+            System.out.println("failedd future 2");
+        }
 
-        executorService.shutdown();
+        assertTrue(oneFailed, "One of the bookings should fail due to seat unavailability");
+
+        executor.shutdown();
     }
 }
