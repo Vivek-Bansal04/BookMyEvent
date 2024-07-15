@@ -38,4 +38,6 @@ out/
 .vscode/
 
 *application-local.properties
+*application-prod.properties
+
 

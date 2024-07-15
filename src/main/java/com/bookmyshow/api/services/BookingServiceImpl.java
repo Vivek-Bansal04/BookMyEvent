@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
@@ -116,7 +117,7 @@ public class BookingServiceImpl implements BookingService{
         booking.setBookedBy(userRepository.findById(userId).get());
         booking.setShow(show);
         booking.setShowSeats(showSeats);
-        booking.setTimeOfBooking(LocalDate.now());
+        booking.setTimeOfBooking(LocalDateTime.now());
         int totalAmount = 0;
         for(ShowSeat showSeat : showSeats){
             for(ShowSeatType showSeatType: show.getShowSeatTypes()){
