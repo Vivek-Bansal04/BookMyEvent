@@ -3,6 +3,7 @@ package com.bookmyshow.api.utils;
 import com.bookmyshow.api.exceptions.InternalServerException;
 import com.bookmyshow.api.exceptions.ResourceNotFoundException;
 import lombok.extern.slf4j.Slf4j;
+import org.slf4j.MDC;
 import org.springframework.beans.TypeMismatchException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpHeaders;
@@ -24,6 +25,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.bookmyshow.api.utils.ValidationUtils.isNotNullOrBlank;
+import static com.bookmyshow.api.utils.constants.GlobalConstants.REQUEST_ID;
 
 @Slf4j
 @RestControllerAdvice("com.bookmyshow.api")
@@ -38,7 +40,7 @@ public class TLExceptionAdvice extends ResponseEntityExceptionHandler {
         output.setStatus(HttpStatus.BAD_REQUEST.value());
         output.setMessage(ex.getMessage());
         output.setError(HttpStatus.BAD_REQUEST.getReasonPhrase());
-//        output.setRequestId(MDC.get(REQUEST_ID));
+        output.setRequestId(MDC.get(REQUEST_ID));
         return new ResponseEntity<>(output, HttpStatus.BAD_REQUEST);
     }
 
@@ -52,7 +54,7 @@ public class TLExceptionAdvice extends ResponseEntityExceptionHandler {
 
         final ResponseBuilder<Object> output = parseUnknownException(ex);
 
-//        output.setRequestId(MDC.get(REQUEST_ID));
+        output.setRequestId(MDC.get(REQUEST_ID));
         return new ResponseEntity<>(output, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
@@ -65,7 +67,7 @@ public class TLExceptionAdvice extends ResponseEntityExceptionHandler {
         output.setMessage(ex.getMessage());
         output.setError(HttpStatus.NOT_FOUND.getReasonPhrase());
         output.setErrorData(ex.getCause());
-//        output.setRequestId(MDC.get(REQUEST_ID));
+        output.setRequestId(MDC.get(REQUEST_ID));
 
         return new ResponseEntity<>(output, HttpStatus.NOT_FOUND);
     }
@@ -104,7 +106,7 @@ public class TLExceptionAdvice extends ResponseEntityExceptionHandler {
         output.setMessage(ex.getMessage());
         output.setError(HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase());
         output.setErrorData(ex.getCause());
-//        output.setRequestId(MDC.get(REQUEST_ID));
+        output.setRequestId(MDC.get(REQUEST_ID));
         return output;
     }
 
@@ -132,7 +134,7 @@ public class TLExceptionAdvice extends ResponseEntityExceptionHandler {
         output.setMessage(ex.getMessage());
         output.setError(HttpStatus.BAD_REQUEST.getReasonPhrase());
         output.setErrorData(errors);
-//        output.setRequestId(MDC.get(REQUEST_ID));
+        output.setRequestId(MDC.get(REQUEST_ID));
         return handleExceptionInternal(ex, output, headers, HttpStatus.BAD_REQUEST, request);
     }
 
@@ -150,7 +152,7 @@ public class TLExceptionAdvice extends ResponseEntityExceptionHandler {
         output.setMessage(ex.getMessage());
         output.setError(HttpStatus.BAD_REQUEST.getReasonPhrase());
         output.setErrorData(List.of(unsupported, supported));
-//        output.setRequestId(MDC.get(REQUEST_ID));
+        output.setRequestId(MDC.get(REQUEST_ID));
         return handleExceptionInternal(ex, output, headers, HttpStatus.BAD_REQUEST, request);
     }
 
@@ -162,7 +164,7 @@ public class TLExceptionAdvice extends ResponseEntityExceptionHandler {
         output.setStatus(HttpStatus.BAD_REQUEST.value());
         output.setMessage(ex.getMessage());
         output.setError(HttpStatus.BAD_REQUEST.getReasonPhrase());
-//        output.setRequestId(MDC.get(REQUEST_ID));
+        output.setRequestId(MDC.get(REQUEST_ID));
         return handleExceptionInternal(ex, output, headers, HttpStatus.BAD_REQUEST, request);
     }
 
@@ -174,7 +176,7 @@ public class TLExceptionAdvice extends ResponseEntityExceptionHandler {
         output.setStatus(HttpStatus.BAD_REQUEST.value());
         output.setMessage(ex.getMessage());
         output.setError(HttpStatus.BAD_REQUEST.getReasonPhrase());
-//        output.setRequestId(MDC.get(REQUEST_ID));
+        output.setRequestId(MDC.get(REQUEST_ID));
         return handleExceptionInternal(ex, output, headers, HttpStatus.BAD_REQUEST, request);
     }
 
@@ -199,7 +201,7 @@ public class TLExceptionAdvice extends ResponseEntityExceptionHandler {
         output.setMessage(ex.getMessage());
         output.setError(HttpStatus.BAD_REQUEST.getReasonPhrase());
         output.setErrorData(errors);
-//        output.setRequestId(MDC.get(REQUEST_ID));
+        output.setRequestId(MDC.get(REQUEST_ID));
         return handleExceptionInternal(ex, output, headers, HttpStatus.BAD_REQUEST, request);
     }
 }
