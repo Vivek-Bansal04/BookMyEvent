@@ -1,0 +1,184 @@
+2024-07-14 13:01:27.076  INFO 208536 --- [Test worker] com.bookmyshow.demo.BookingServiceTest   : Starting BookingServiceTest on L108587 with PID 208536 (started by 830466 in C:\Users\830466\Desktop\bookMyShow\BmsAPI)
+2024-07-14 13:01:27.077  INFO 208536 --- [Test worker] com.bookmyshow.demo.BookingServiceTest   : The following profiles are active: local
+2024-07-14 13:01:28.199  INFO 208536 --- [Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFERRED mode.
+2024-07-14 13:01:28.344  INFO 208536 --- [Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 133ms. Found 9 JPA repository interfaces.
+2024-07-14 13:01:29.243  INFO 208536 --- [Test worker] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2024-07-14 13:01:29.369  INFO 208536 --- [task-1] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-07-14 13:01:29.512  INFO 208536 --- [task-1] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.17.Final
+2024-07-14 13:01:29.823  WARN 208536 --- [Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-07-14 13:01:29.884  INFO 208536 --- [task-1] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2024-07-14 13:01:30.165  INFO 208536 --- [task-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-07-14 13:01:30.820  INFO 208536 --- [task-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-07-14 13:01:30.907  INFO 208536 --- [task-1] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+2024-07-14 13:01:31.533  WARN 208536 --- [task-1] Hibernate Types                          : You should use Hypersistence Optimizer to speed up your Hibernate application!
+2024-07-14 13:01:31.534  WARN 208536 --- [task-1] Hibernate Types                          : For more details, go to https://vladmihalcea.com/hypersistence-optimizer/
+2024-07-14 13:01:31.536  INFO 208536 --- [task-1] Hibernate Types                          : 
+ _    _                           _     _
+| |  | |                         (_)   | |
+| |__| |_   _ _ __   ___ _ __ ___ _ ___| |_ ___ _ __   ___ ___
+|  __  | | | | '_ \ / _ \ '__/ __| / __| __/ _ \ '_ \ / __/ _ \
+| |  | | |_| | |_) |  __/ |  \__ \ \__ \ ||  __/ | | | (_|  __/
+|_|  |_|\__, | .__/ \___|_|  |___/_|___/\__\___|_| |_|\___\___|
+         __/ | |
+        |___/|_|
+
+           ____        _   _           _
+          / __ \      | | (_)         (_)
+         | |  | |_ __ | |_ _ _ __ ___  _ _______ _ __
+         | |  | | '_ \| __| | '_ ` _ \| |_  / _ \ '__|
+         | |__| | |_) | |_| | | | | | | |/ /  __/ |
+          \____/| .__/ \__|_|_| |_| |_|_/___\___|_|
+                | |
+                |_|
+
+2024-07-14 13:01:31.538  INFO 208536 --- [task-1] Hibernate Types                          : Check out the README page for more info about the Hypersistence Optimizer banner https://github.com/vladmihalcea/hibernate-types#how-to-remove-the-hypersistence-optimizer-banner-from-the-log
+2024-07-14 13:01:33.049  INFO 208536 --- [task-1] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2024-07-14 13:01:33.058  INFO 208536 --- [task-1] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-07-14 13:01:33.223  INFO 208536 --- [Test worker] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoint(s) beneath base path '/actuator'
+2024-07-14 13:01:33.282  INFO 208536 --- [Test worker] DeferredRepositoryInitializationListener : Triggering deferred initialization of Spring Data repositories…
+2024-07-14 13:01:34.009  INFO 208536 --- [Test worker] DeferredRepositoryInitializationListener : Spring Data repositories initialized!
+2024-07-14 13:01:34.027  INFO 208536 --- [Test worker] com.bookmyshow.demo.BookingServiceTest   : Started BookingServiceTest in 7.357 seconds (JVM running for 8.726)
+2024-07-14 13:01:34.977  WARN 208536 --- [pool-1-thread-1] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 0, SQLState: 40001
+2024-07-14 13:01:34.978 ERROR 208536 --- [pool-1-thread-1] o.h.engine.jdbc.spi.SqlExceptionHelper   : ERROR: could not serialize access due to concurrent update
+2024-07-14 13:01:35.154  INFO 208536 --- [SpringContextShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-07-14 13:01:35.159  INFO 208536 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2024-07-14 13:01:35.161  INFO 208536 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-07-14 13:01:35.177  INFO 208536 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-07-14 13:05:02.800  INFO 209492 --- [Test worker] com.bookmyshow.demo.BookingServiceTest   : Starting BookingServiceTest on L108587 with PID 209492 (started by 830466 in C:\Users\830466\Desktop\bookMyShow\BmsAPI)
+2024-07-14 13:05:02.801  INFO 209492 --- [Test worker] com.bookmyshow.demo.BookingServiceTest   : The following profiles are active: local
+2024-07-14 13:05:03.789  INFO 209492 --- [Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFERRED mode.
+2024-07-14 13:05:03.903  INFO 209492 --- [Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 106ms. Found 9 JPA repository interfaces.
+2024-07-14 13:05:04.536  INFO 209492 --- [Test worker] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2024-07-14 13:05:04.633  INFO 209492 --- [task-1] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-07-14 13:05:04.746  INFO 209492 --- [task-1] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.17.Final
+2024-07-14 13:05:05.103  WARN 209492 --- [Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-07-14 13:05:05.108  INFO 209492 --- [task-1] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2024-07-14 13:05:05.342  INFO 209492 --- [task-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-07-14 13:05:05.824  INFO 209492 --- [task-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-07-14 13:05:05.886  INFO 209492 --- [task-1] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+2024-07-14 13:05:06.362  WARN 209492 --- [task-1] Hibernate Types                          : You should use Hypersistence Optimizer to speed up your Hibernate application!
+2024-07-14 13:05:06.363  WARN 209492 --- [task-1] Hibernate Types                          : For more details, go to https://vladmihalcea.com/hypersistence-optimizer/
+2024-07-14 13:05:06.364  INFO 209492 --- [task-1] Hibernate Types                          : 
+ _    _                           _     _
+| |  | |                         (_)   | |
+| |__| |_   _ _ __   ___ _ __ ___ _ ___| |_ ___ _ __   ___ ___
+|  __  | | | | '_ \ / _ \ '__/ __| / __| __/ _ \ '_ \ / __/ _ \
+| |  | | |_| | |_) |  __/ |  \__ \ \__ \ ||  __/ | | | (_|  __/
+|_|  |_|\__, | .__/ \___|_|  |___/_|___/\__\___|_| |_|\___\___|
+         __/ | |
+        |___/|_|
+
+           ____        _   _           _
+          / __ \      | | (_)         (_)
+         | |  | |_ __ | |_ _ _ __ ___  _ _______ _ __
+         | |  | | '_ \| __| | '_ ` _ \| |_  / _ \ '__|
+         | |__| | |_) | |_| | | | | | | |/ /  __/ |
+          \____/| .__/ \__|_|_| |_| |_|_/___\___|_|
+                | |
+                |_|
+
+2024-07-14 13:05:06.365  INFO 209492 --- [task-1] Hibernate Types                          : Check out the README page for more info about the Hypersistence Optimizer banner https://github.com/vladmihalcea/hibernate-types#how-to-remove-the-hypersistence-optimizer-banner-from-the-log
+2024-07-14 13:05:07.368  INFO 209492 --- [task-1] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2024-07-14 13:05:07.375  INFO 209492 --- [task-1] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-07-14 13:05:07.532  INFO 209492 --- [Test worker] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoint(s) beneath base path '/actuator'
+2024-07-14 13:05:07.601  INFO 209492 --- [Test worker] DeferredRepositoryInitializationListener : Triggering deferred initialization of Spring Data repositories…
+2024-07-14 13:05:08.241  INFO 209492 --- [Test worker] DeferredRepositoryInitializationListener : Spring Data repositories initialized!
+2024-07-14 13:05:08.261  INFO 209492 --- [Test worker] com.bookmyshow.demo.BookingServiceTest   : Started BookingServiceTest in 5.793 seconds (JVM running for 7.053)
+2024-07-14 13:05:08.834  WARN 209492 --- [pool-1-thread-1] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 0, SQLState: 40001
+2024-07-14 13:05:08.834 ERROR 209492 --- [pool-1-thread-1] o.h.engine.jdbc.spi.SqlExceptionHelper   : ERROR: could not serialize access due to concurrent update
+2024-07-14 13:05:08.886  INFO 209492 --- [SpringContextShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-07-14 13:05:08.888  INFO 209492 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2024-07-14 13:05:08.889  INFO 209492 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-07-14 13:05:08.909  INFO 209492 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-07-14 13:05:54.088  INFO 221040 --- [Test worker] com.bookmyshow.demo.BookingServiceTest   : Starting BookingServiceTest on L108587 with PID 221040 (started by 830466 in C:\Users\830466\Desktop\bookMyShow\BmsAPI)
+2024-07-14 13:05:54.090  INFO 221040 --- [Test worker] com.bookmyshow.demo.BookingServiceTest   : The following profiles are active: local
+2024-07-14 13:05:55.053  INFO 221040 --- [Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFERRED mode.
+2024-07-14 13:05:55.203  INFO 221040 --- [Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 140ms. Found 9 JPA repository interfaces.
+2024-07-14 13:05:55.815  INFO 221040 --- [Test worker] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2024-07-14 13:05:55.900  INFO 221040 --- [task-1] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-07-14 13:05:55.982  INFO 221040 --- [task-1] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.17.Final
+2024-07-14 13:05:56.219  INFO 221040 --- [task-1] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2024-07-14 13:05:56.292  WARN 221040 --- [Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-07-14 13:05:56.425  INFO 221040 --- [task-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-07-14 13:05:56.820  INFO 221040 --- [task-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-07-14 13:05:56.855  INFO 221040 --- [task-1] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+2024-07-14 13:05:57.284  WARN 221040 --- [task-1] Hibernate Types                          : You should use Hypersistence Optimizer to speed up your Hibernate application!
+2024-07-14 13:05:57.285  WARN 221040 --- [task-1] Hibernate Types                          : For more details, go to https://vladmihalcea.com/hypersistence-optimizer/
+2024-07-14 13:05:57.286  INFO 221040 --- [task-1] Hibernate Types                          : 
+ _    _                           _     _
+| |  | |                         (_)   | |
+| |__| |_   _ _ __   ___ _ __ ___ _ ___| |_ ___ _ __   ___ ___
+|  __  | | | | '_ \ / _ \ '__/ __| / __| __/ _ \ '_ \ / __/ _ \
+| |  | | |_| | |_) |  __/ |  \__ \ \__ \ ||  __/ | | | (_|  __/
+|_|  |_|\__, | .__/ \___|_|  |___/_|___/\__\___|_| |_|\___\___|
+         __/ | |
+        |___/|_|
+
+           ____        _   _           _
+          / __ \      | | (_)         (_)
+         | |  | |_ __ | |_ _ _ __ ___  _ _______ _ __
+         | |  | | '_ \| __| | '_ ` _ \| |_  / _ \ '__|
+         | |__| | |_) | |_| | | | | | | |/ /  __/ |
+          \____/| .__/ \__|_|_| |_| |_|_/___\___|_|
+                | |
+                |_|
+
+2024-07-14 13:05:57.287  INFO 221040 --- [task-1] Hibernate Types                          : Check out the README page for more info about the Hypersistence Optimizer banner https://github.com/vladmihalcea/hibernate-types#how-to-remove-the-hypersistence-optimizer-banner-from-the-log
+2024-07-14 13:05:58.374  INFO 221040 --- [task-1] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2024-07-14 13:05:58.382  INFO 221040 --- [task-1] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-07-14 13:05:58.561  INFO 221040 --- [Test worker] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoint(s) beneath base path '/actuator'
+2024-07-14 13:05:58.643  INFO 221040 --- [Test worker] DeferredRepositoryInitializationListener : Triggering deferred initialization of Spring Data repositories…
+2024-07-14 13:05:59.291  INFO 221040 --- [Test worker] DeferredRepositoryInitializationListener : Spring Data repositories initialized!
+2024-07-14 13:05:59.313  INFO 221040 --- [Test worker] com.bookmyshow.demo.BookingServiceTest   : Started BookingServiceTest in 5.538 seconds (JVM running for 6.939)
+2024-07-14 13:05:59.994  WARN 221040 --- [pool-1-thread-2] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 0, SQLState: 40001
+2024-07-14 13:05:59.994 ERROR 221040 --- [pool-1-thread-2] o.h.engine.jdbc.spi.SqlExceptionHelper   : ERROR: could not serialize access due to concurrent update
+2024-07-14 13:06:00.055  INFO 221040 --- [SpringContextShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-07-14 13:06:00.059  INFO 221040 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2024-07-14 13:06:00.059  INFO 221040 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-07-14 13:06:00.072  INFO 221040 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-07-14 18:34:49.196  INFO 215284 --- [Test worker] com.bookmyshow.demo.BookingServiceTest   : Starting BookingServiceTest on L108587 with PID 215284 (started by 830466 in C:\Users\830466\Desktop\bookMyShow\BmsAPI)
+2024-07-14 18:34:49.198  INFO 215284 --- [Test worker] com.bookmyshow.demo.BookingServiceTest   : The following profiles are active: local
+2024-07-14 18:34:50.310  INFO 215284 --- [Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFERRED mode.
+2024-07-14 18:34:50.442  INFO 215284 --- [Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 119ms. Found 9 JPA repository interfaces.
+2024-07-14 18:34:51.141  INFO 215284 --- [Test worker] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2024-07-14 18:34:51.247  INFO 215284 --- [task-1] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-07-14 18:34:51.387  INFO 215284 --- [task-1] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.17.Final
+2024-07-14 18:34:51.677  WARN 215284 --- [Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-07-14 18:34:51.689  INFO 215284 --- [task-1] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2024-07-14 18:34:51.941  INFO 215284 --- [task-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-07-14 18:34:52.391  INFO 215284 --- [task-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-07-14 18:34:52.455  INFO 215284 --- [task-1] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+2024-07-14 18:34:52.982  WARN 215284 --- [task-1] Hibernate Types                          : You should use Hypersistence Optimizer to speed up your Hibernate application!
+2024-07-14 18:34:52.983  WARN 215284 --- [task-1] Hibernate Types                          : For more details, go to https://vladmihalcea.com/hypersistence-optimizer/
+2024-07-14 18:34:52.984  INFO 215284 --- [task-1] Hibernate Types                          : 
+ _    _                           _     _
+| |  | |                         (_)   | |
+| |__| |_   _ _ __   ___ _ __ ___ _ ___| |_ ___ _ __   ___ ___
+|  __  | | | | '_ \ / _ \ '__/ __| / __| __/ _ \ '_ \ / __/ _ \
+| |  | | |_| | |_) |  __/ |  \__ \ \__ \ ||  __/ | | | (_|  __/
+|_|  |_|\__, | .__/ \___|_|  |___/_|___/\__\___|_| |_|\___\___|
+         __/ | |
+        |___/|_|
+
+           ____        _   _           _
+          / __ \      | | (_)         (_)
+         | |  | |_ __ | |_ _ _ __ ___  _ _______ _ __
+         | |  | | '_ \| __| | '_ ` _ \| |_  / _ \ '__|
+         | |__| | |_) | |_| | | | | | | |/ /  __/ |
+          \____/| .__/ \__|_|_| |_| |_|_/___\___|_|
+                | |
+                |_|
+
+2024-07-14 18:34:52.985  INFO 215284 --- [task-1] Hibernate Types                          : Check out the README page for more info about the Hypersistence Optimizer banner https://github.com/vladmihalcea/hibernate-types#how-to-remove-the-hypersistence-optimizer-banner-from-the-log
+2024-07-14 18:34:54.221  INFO 215284 --- [task-1] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2024-07-14 18:34:54.227  INFO 215284 --- [task-1] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-07-14 18:34:54.401  INFO 215284 --- [Test worker] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoint(s) beneath base path '/actuator'
+2024-07-14 18:34:54.470  INFO 215284 --- [Test worker] DeferredRepositoryInitializationListener : Triggering deferred initialization of Spring Data repositories…
+2024-07-14 18:34:55.151  INFO 215284 --- [Test worker] DeferredRepositoryInitializationListener : Spring Data repositories initialized!
+2024-07-14 18:34:55.169  INFO 215284 --- [Test worker] com.bookmyshow.demo.BookingServiceTest   : Started BookingServiceTest in 6.385 seconds (JVM running for 7.774)
+2024-07-14 18:34:57.073  WARN 215284 --- [pool-1-thread-2] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 0, SQLState: 40001
+2024-07-14 18:34:57.074 ERROR 215284 --- [pool-1-thread-2] o.h.engine.jdbc.spi.SqlExceptionHelper   : ERROR: could not serialize access due to concurrent update
+2024-07-14 18:34:57.123  INFO 215284 --- [SpringContextShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-07-14 18:34:57.126  INFO 215284 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2024-07-14 18:34:57.127  INFO 215284 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-07-14 18:34:57.140  INFO 215284 --- [SpringContextShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
