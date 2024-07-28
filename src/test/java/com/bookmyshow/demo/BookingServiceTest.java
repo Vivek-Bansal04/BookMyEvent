@@ -34,8 +34,8 @@ public class BookingServiceTest {
 
     @BeforeEach
     public void setUp() {
-        showSeatIds1 = Arrays.asList(4L, 5L, 6L);
-        showSeatIds2 = Arrays.asList(6L, 7L);
+        showSeatIds1 = Arrays.asList(4L, 5L, 6L,7L,8L);
+        showSeatIds2 = Arrays.asList(6L, 7L,8L,9L);
         showId = 6L;
         userId1 = 1L;
         userId2 = 3L;

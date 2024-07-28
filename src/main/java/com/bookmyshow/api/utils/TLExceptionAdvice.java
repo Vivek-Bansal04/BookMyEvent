@@ -3,8 +3,11 @@ package com.bookmyshow.api.utils;
 import com.bookmyshow.api.exceptions.InternalServerException;
 import com.bookmyshow.api.exceptions.ResourceNotFoundException;
 import lombok.extern.slf4j.Slf4j;
+import org.hibernate.exception.LockAcquisitionException;
+import org.postgresql.util.PSQLException;
 import org.slf4j.MDC;
 import org.springframework.beans.TypeMismatchException;
+import org.springframework.dao.CannotAcquireLockException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -70,6 +73,34 @@ public class TLExceptionAdvice extends ResponseEntityExceptionHandler {
         output.setRequestId(MDC.get(REQUEST_ID));
 
         return new ResponseEntity<>(output, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler({CannotAcquireLockException.class, LockAcquisitionException.class})
+    public final ResponseEntity<Object> handleLockAcquisitionException(Exception ex) {
+        log.error("Lock acquisition error", ex);
+
+        final ResponseBuilder<Object> output = new ResponseBuilder<>();
+        output.setStatus(HttpStatus.CONFLICT.value());
+        output.setMessage("Lock acquisition error");
+        output.setError(HttpStatus.CONFLICT.getReasonPhrase());
+        output.setErrorData("Lock acquisition error");
+        output.setRequestId(MDC.get(REQUEST_ID));
+
+        return new ResponseEntity<>(output, HttpStatus.CONFLICT);
+    }
+
+    @ExceptionHandler(PSQLException.class)
+    public ResponseEntity<String> handlePSQLException(PSQLException ex) {
+        if ("40001".equals(ex.getSQLState())) {
+            // Handle concurrent update exception
+            return ResponseEntity
+                    .status(HttpStatus.CONFLICT)
+                    .body("Could not acquire lock");
+        }
+        // If it's a different PSQLException, let it propagate
+        return ResponseEntity
+                .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body("An unexpected database error occurred.");
     }
 
 //    @ExceptionHandler({RequestValidationException.class})
