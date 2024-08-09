@@ -12,3 +12,10 @@
 11. CI CD pipeline
 12. encrypt DB password
 
+For readme
+### show db mapping
+### high level image of architecture of application
+### features
+### endpoints
+### how to use app
+### how to run application locally 
